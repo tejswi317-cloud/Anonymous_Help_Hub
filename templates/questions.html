@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}
+Help Someone
+{% endblock %}
+
+
+{% block content %}
+
+<section>
+
+    <h1>
+        People Looking for Help
+    </h1>
+
+    <p>
+        If you know how to help someone,
+        you can connect anonymously.
+    </p>
+
+
+    {% if questions %}
+
+        {% for question in questions %}
+
+        <article class="question-card">
+
+            <span class="category">
+                {{ question["category"] }}
+            </span>
+
+            <h2>
+                {{ question["title"] }}
+            </h2>
+
+            <p>
+                {{ question["description"] }}
+            </p>
+
+            <p>
+                <small>
+                    Anonymous user:
+                    {{ question["anonymous_id"] }}
+                </small>
+            </p>
+
+
+            <a
+                class="button"
+                href="{{ url_for(
+                    'help_question',
+                    question_id=question['id']
+                ) }}"
+            >
+
+                I Can Help
+
+            </a>
+
+        </article>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>
+            There are currently no open requests.
+        </p>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

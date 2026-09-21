@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}
+Anonymous Help Hub
+{% endblock %}
+
+
+{% block content %}
+
+<section class="hero">
+
+    <h1>
+        A Safe Place to Ask for Help
+    </h1>
+
+    <p>
+        Ask questions anonymously and connect
+        with people willing to help.
+    </p>
+
+    <div class="anonymous-box">
+
+        Your anonymous identity:
+
+        <strong>
+            {{ anonymous_id }}
+        </strong>
+
+    </div>
+
+</section>
+
+
+<section class="actions">
+
+    <a class="button"
+       href="{{ url_for('ask') }}">
+
+        Ask for Help
+
+    </a>
+
+
+    <a class="button secondary"
+       href="{{ url_for('questions') }}">
+
+        I Want to Help
+
+    </a>
+
+</section>
+
+
+<section>
+
+    <h2>
+        Open Help Requests
+    </h2>
+
+    {% if questions %}
+
+        {% for question in questions %}
+
+        <article class="question-card">
+
+            <span class="category">
+                {{ question["category"] }}
+            </span>
+
+            <h3>
+                {{ question["title"] }}
+            </h3>
+
+            <p>
+                {{ question["description"] }}
+            </p>
+
+            <small>
+                Asked anonymously by
+                {{ question["anonymous_id"] }}
+            </small>
+
+            <br><br>
+
+            <a class="button"
+               href="{{ url_for('help_question',
+               question_id=question['id']) }}">
+
+                I Can Help
+
+            </a>
+
+        </article>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>
+            No open questions right now.
+        </p>
+
+    {% endif %}
+
+</section>
+
+
+<section>
+
+    <h2>
+        Your Matches
+    </h2>
+
+    {% if matches %}
+
+        {% for match in matches %}
+
+            <div class="match-card">
+
+                <p>
+                    Anonymous connection #{{ match["id"] }}
+                </p>
+
+                <a class="button"
+                   href="{{ url_for('chat',
+                   match_id=match['id']) }}">
+
+                    Open Anonymous Chat
+
+                </a>
+
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>
+            You do not have any active matches yet.
+        </p>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}
+Ask for Help
+{% endblock %}
+
+
+{% block content %}
+
+<section class="form-container">
+
+    <h1>
+        Ask for Help
+    </h1>
+
+    <p>
+        You do not need to provide your real name.
+    </p>
+
+
+    {% if error %}
+
+        <div class="error">
+            {{ error }}
+        </div>
+
+    {% endif %}
+
+
+    <form method="POST">
+
+        <label>
+            Category
+        </label>
+
+        <select name="category" required>
+
+            <option value="">
+                Select a category
+            </option>
+
+            <option value="Study">
+                Study
+            </option>
+
+            <option value="Work">
+                Work
+            </option>
+
+            <option value="Technology">
+                Technology
+            </option>
+
+            <option value="Career">
+                Career
+            </option>
+
+            <option value="Personal Guidance">
+                Personal Guidance
+            </option>
+
+            <option value="Other">
+                Other
+            </option>
+
+        </select>
+
+
+        <label>
+            Question Title
+        </label>
+
+        <input
+            type="text"
+            name="title"
+            maxlength="150"
+            placeholder="What do you need help with?"
+            required
+        >
+
+
+        <label>
+            Explain Your Problem
+        </label>
+
+        <textarea
+            name="description"
+            maxlength="1000"
+            rows="8"
+            placeholder="Explain your question without sharing private information..."
+            required
+        ></textarea>
+
+
+        <button type="submit">
+            Post Anonymously
+        </button>
+
+    </form>
+
+</section>
+
+{% endblock %}

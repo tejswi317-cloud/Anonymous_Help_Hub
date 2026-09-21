@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+Error
+{% endblock %}
+
+
+{% block content %}
+
+<section class="form-container">
+
+    <h1>
+        Something happened
+    </h1>
+
+    <div class="error">
+        {{ message }}
+    </div>
+
+    <br>
+
+    <a
+        class="button"
+        href="{{ url_for('home') }}"
+    >
+        Return Home
+    </a>
+
+</section>
+
+{% endblock %}

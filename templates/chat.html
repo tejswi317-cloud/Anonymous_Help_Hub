@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}
+Anonymous Chat
+{% endblock %}
+
+
+{% block content %}
+
+<section class="chat-container">
+
+    <h1>
+        Anonymous Chat
+    </h1>
+
+    <p>
+        You are connected anonymously.
+    </p>
+
+
+    {% if error %}
+
+        <div class="error">
+            {{ error }}
+        </div>
+
+    {% endif %}
+
+
+    <div class="chat-box">
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+            <div class="message">
+
+                <strong>
+                    {{ message["sender_id"] }}
+                </strong>
+
+                <p>
+                    {{ message["message"] }}
+                </p>
+
+                <small>
+                    {{ message["created_at"] }}
+                </small>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>
+                No messages yet. Start the conversation.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <form method="POST">
+
+        <textarea
+            name="message"
+            maxlength="500"
+            rows="4"
+            placeholder="Write your message..."
+            required
+        ></textarea>
+
+
+        <button type="submit">
+            Send Message
+        </button>
+
+    </form>
+
+</section>
+
+{% endblock %}
